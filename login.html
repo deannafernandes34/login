@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Signup</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        background-image: url('back.png');
+        background-size: cover;
+        font-family: Arial, sans-serif;
+        color: #fff;
+        margin: 0;
+        padding: 0;
+
+      }
+      form {
+        background-color: #90EE90;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        width: 400px;
+        margin: 50px auto;
+      }
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+        font-size: 16px;
+      }
+      input[type="submit"] {
+        background-color: #4CAF50;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 20px;
+      }
+      input[type="submit"]:hover {
+        background-color: #3e8e41;
+      }
+      label.error {
+        color: #f00;
+        font-size: 12px;
+        margin-bottom: 10px;
+        display: block;
+      }
+
+      .form-submit:hover {
+  background-color: #3e8e41;
+  transform: translateY(-2px);
+}
+
+nav {
+  background-color: #333;
+  height: 50px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+
+      
+}
+
+    </style>
+  </head>
+  <body>
+
+    <nav>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</nav>
+
+    <form id="signup-form" action="#" method="post">
+      <h2>Signup</h2>
+      <label for="username" >Username:</label>
+      <input type="text" id="username" name="username">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password">
+      <label for="confirm-password">Confirm Password:</label>
+      <input type="password" id="confirm-password" name="confirm-password">
+      <div class="form-group">
+  <label for="gender">Gender:</label>
+  <div class="radio">
+    <label><input type="radio" name="gender" value="male">Male</label>
+  </div>
+  <div class="radio">
+    <label><input type="radio" name="gender" value="female">Female</label>
+  </div>
+  <div class="radio">
+    <label><input type="radio" name="gender" value="other">Other</label>
+  </div>
+</div>
+<br>
+
+<div class="form-group">
+  <label for="dob">Date of Birth:</label>
+  <input type="date" id="dob" name="dob">
+</div>
+      <input type="submit" value="Submit">
+    </form>
+    <script>
+      const form = document.getElementById('signup-form');
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const confirmInput = document.getElementById('confirm-password');
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value.trim();
+        const confirm = confirmInput.value.trim();
+        let errors = false;
+        if (!username) {
+          const errorLabel = document.createElement('label');
+          errorLabel.classList.add('error');
+          errorLabel.textContent = 'Please enter a username';
+          usernameInput.parentNode.insertBefore(errorLabel, usernameInput.nextSibling);
+          errors = true;
+        }
+        if (!password || password.length < 8) {
+          const errorLabel = document.createElement('label');
+          errorLabel.classList.add('error');
+          errorLabel.textContent = 'Please enter a password with at least 8 characters';
+          passwordInput.parentNode.insertBefore(errorLabel, passwordInput.nextSibling);
+          errors = true;
+        }
+        if (password !== confirm) {
+          const errorLabel = document.createElement('label');
+          errorLabel.classList.add('error');
+          errorLabel.textContent = 'Passwords do not match';
+          confirmInput.parentNode.insertBefore(errorLabel, confirmInput.nextSibling);
+          errors = true;
+        }
+        if (!errors) {
+          form.submit();
+        }
+      });
+    </script>
+  </body>
+</html>
+``
